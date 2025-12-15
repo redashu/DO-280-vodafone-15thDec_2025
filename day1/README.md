@@ -391,4 +391,8 @@ NAME       READY   STATUS    RESTARTS   AGE
 ashupod1   1/1     Running   0          5s
 [ashu@ip-172-31-35-119 ~]$ 
 
+
+====>
+ 126  kubectl logs ashupod1
+  127  kubectl  delete pod ashupod1
 ```
