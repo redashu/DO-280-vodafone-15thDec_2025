@@ -359,4 +359,17 @@ Kustomize Version: v5.6.0
 Server Version: v1.33.5
 
 ```
+### checking worker nodes
+
+```
+kubectl   get nodes
+NAME                                STATUS   ROLES    AGE   VERSION
+aks-agentpool-67758540-vmss000000   Ready    <none>   73m   v1.33.5
+aks-agentpool-67758540-vmss000001   Ready    <none>   73m   v1.33.5
+
+```
+
+### introduction to k8s pod 
+
+<img src="pod1.png">
 
