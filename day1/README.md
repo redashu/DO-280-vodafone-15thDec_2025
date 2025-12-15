@@ -253,9 +253,7 @@ f89b412f0854: Mounted from rajeshravi5960/py
 0b208bc29d30: Mounted from rajeshravi5960/py 
 e9b010e49a06: Mounted from rajeshravi5960/py 
 versionv1: digest: sha256:568a19c902e825d5a389faa60c5048b768450ad529c0abc3e8062e0b308b52a0 size: 2210
-[ashu@ip-172-31-35-119 python-app]$ docker logout -u dockerashu
-unknown shorthand flag: 'u' in -u
-See 'docker logout --help'.
+
 [ashu@ip-172-31-35-119 python-app]$ docker logout 
 Removing login credentials for https://index.docker.io/v1/
 [ashu@ip-172-31-35-119 python-app]$ 
