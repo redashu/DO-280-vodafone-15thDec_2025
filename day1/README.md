@@ -223,3 +223,8 @@ exit
             "OOMKilled": false,
 
 ```
+
+### container image registry 
+
+<img src="reg1.png">
+
