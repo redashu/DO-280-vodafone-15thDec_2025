@@ -196,3 +196,30 @@ ashuc1
 
 <img src="rm1.png">
 
+### docker more operations 
+
+```
+docker  exec  -ti rajesh   /bin/bash 
+root@5086bfa8ed66:/# 
+root@5086bfa8ed66:/# 
+root@5086bfa8ed66:/# ls
+bin  boot  dev	etc  home  lib	lib64  media  mnt  opt	proc  rajeshapp  root  run  sbin  srv  sys  tmp  usr  var
+root@5086bfa8ed66:/# exit
+exit
+[ashu@ip-172-31-35-119 python-app]$ docker inspect rajesh
+[
+    {
+        "Id": "5086bfa8ed668363c65932e534c61b2797dc227b27e89faddf2a3513443b789f",
+        "Created": "2025-12-15T07:33:19.704280743Z",
+        "Path": "python",
+        "Args": [
+            "/rajeshapp/hello.py"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+
+```
