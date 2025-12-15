@@ -14,4 +14,4 @@
 
 ### Understanding container runtime engines 
 
-<img src="cont2.png">
+<img src="cre1.png">
