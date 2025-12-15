@@ -119,3 +119,35 @@ ashu-project/
 [ashu@ip-172-31-35-119 python-app]$ 
 
 ```
+### lets build docker image
+
+```
+[ashu@ip-172-31-35-119 python-app]$ ls
+Dockerfile  hello.py
+
+
+[ashu@ip-172-31-35-119 python-app]$ docker build -t  ashupython:v1   . 
+[+] Building 0.8s (8/8) FINISHED                                                                              docker:default
+ => [internal] load build definition from Dockerfile                                                                    0.0s
+ => => transferring dockerfile: 378B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:latest                                                        0.0s
+ => [internal] load .dockerignore                                                                                       0.0s
+ => => transferring context: 2B                                                                                         0.0s
+ => [1/3] FROM docker.io/library/python:latest                                                                          0.1s
+ => [internal] load build context                                                                                       0.0s
+ => => transferring context: 328B                                                                                       0.0s
+ => [2/3] RUN  mkdir  /ashuapp                                                                                          0.4s
+ => [3/3] COPY hello.py /ashuapp/hello.py                                                                               0.0s
+ => exporting to image                                                                                                  0.0s
+ => => exporting layers                                                                                                 0.0s
+ => => writing image sha256:e3e55384541180fa8d47240ce583e9edd5c5df7efb6eedfbfcbe74f379fa0548                            0.0s
+ => => naming to docker.io/library/ashupython:v1     
+ 
+                                                                    0.0s
+[ashu@ip-172-31-35-119 python-app]$ docker  images
+REPOSITORY                                 TAG                 IMAGE ID       CREATED          SIZE
+ashupython                                 v1                  e3e553845411   15 seconds ago   1.12GB
+quay.io/fedora/httpd-24                    latest              e7b142b25d18   5 days ago       342MB
+nginx                                      1.29.4-alpine3.23   a236f84b9d5d   5 days ago       53.7MB
+
+```
