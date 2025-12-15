@@ -228,3 +228,36 @@ exit
 
 <img src="reg1.png">
 
+## pushing image to docker hub 
+
+```
+[ashu@ip-172-31-35-119 python-app]$ 
+[ashu@ip-172-31-35-119 python-app]$ docker tag  ashupython:v1  docker.io/dockerashu/vodafone-apps:versionv1
+[ashu@ip-172-31-35-119 python-app]$ 
+[ashu@ip-172-31-35-119 python-app]$ docker login -u dockerashu
+Password: 
+WARNING! Your password will be stored unencrypted in /home/ashu/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[ashu@ip-172-31-35-119 python-app]$ docker push  docker.io/dockerashu/vodafone-apps:versionv1
+The push refers to repository [docker.io/dockerashu/vodafone-apps]
+237d9863d9a5: Pushed 
+959bdeab2ec7: Pushed 
+99026168d02f: Mounted from rajeshravi5960/py 
+5c1d27353faa: Mounted from rajeshravi5960/py 
+f89b412f0854: Mounted from rajeshravi5960/py 
+662b8975365c: Mounted from rajeshravi5960/py 
+8e47c7b8acf3: Mounted from rajeshravi5960/py 
+0b208bc29d30: Mounted from rajeshravi5960/py 
+e9b010e49a06: Mounted from rajeshravi5960/py 
+versionv1: digest: sha256:568a19c902e825d5a389faa60c5048b768450ad529c0abc3e8062e0b308b52a0 size: 2210
+[ashu@ip-172-31-35-119 python-app]$ docker logout -u dockerashu
+unknown shorthand flag: 'u' in -u
+See 'docker logout --help'.
+[ashu@ip-172-31-35-119 python-app]$ docker logout 
+Removing login credentials for https://index.docker.io/v1/
+[ashu@ip-172-31-35-119 python-app]$ 
+
+```
