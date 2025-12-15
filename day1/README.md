@@ -373,3 +373,22 @@ aks-agentpool-67758540-vmss000001   Ready    <none>   73m   v1.33.5
 
 <img src="pod1.png">
 
+### options to create pods 
+
+<img src="pod2.png">
+
+### creating first pod using kubectl cli 
+
+```
+[ashu@ip-172-31-35-119 ~]$ kubectl   get  pods
+No resources found in default namespace.
+[ashu@ip-172-31-35-119 ~]$ 
+[ashu@ip-172-31-35-119 ~]$ 
+[ashu@ip-172-31-35-119 ~]$ kubectl   run  ashupod1 --image docker.io/dockerashu/ashu-appvodafone:v1  --port 80 
+pod/ashupod1 created
+[ashu@ip-172-31-35-119 ~]$ kubectl   get  pods
+NAME       READY   STATUS    RESTARTS   AGE
+ashupod1   1/1     Running   0          5s
+[ashu@ip-172-31-35-119 ~]$ 
+
+```
