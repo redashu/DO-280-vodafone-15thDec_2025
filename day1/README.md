@@ -259,3 +259,20 @@ Removing login credentials for https://index.docker.io/v1/
 [ashu@ip-172-31-35-119 python-app]$ 
 
 ```
+
+## Understanding app deployment problems in container 
+
+<img src="probc1.png">
+
+## Intro to k8s 
+
+<img src="k8s1.png">
+
+### k8s architecture 
+
+<img src="k8s2.png">
+
+### k8s more info 
+
+
+<img src="k8s3.png">
