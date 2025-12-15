@@ -321,3 +321,42 @@ FROM nginx
 COPY beginner-html-site-styled /usr/share/nginx/html/
 
 ```
+
+### building image to deploy in k8s 
+
+<img src="s2d.png">
+
+### using kubectl -- trying to connect  k8s control plane 
+
+```
+ kubectl  version 
+Client Version: v1.33.3
+Kustomize Version: v5.6.0
+Error from server (NotFound): the server could not find the requested resource
+[ashu@ip-172-31-35-119 ~]$ kubectl  version  --kubeconfig /tmp/config 
+Client Version: v1.33.3
+Kustomize Version: v5.6.0
+Server Version: v1.33.5
+[ashu@ip-172-31-35-119 ~]$ 
+
+```
+
+### copy data (kube-server creds) to correct location 
+
+```
+[ashu@ip-172-31-35-119 ~]$ mkdir  ~/.kube/
+mkdir: cannot create directory ‘/home/ashu/.kube/’: File exists
+[ashu@ip-172-31-35-119 ~]$ 
+[ashu@ip-172-31-35-119 ~]$ cp -v  /tmp/config  ~/.kube/
+'/tmp/config' -> '/home/ashu/.kube/config'
+[ashu@ip-172-31-35-119 ~]$ 
+[ashu@ip-172-31-35-119 ~]$ 
+[ashu@ip-172-31-35-119 ~]$ 
+[ashu@ip-172-31-35-119 ~]$ 
+[ashu@ip-172-31-35-119 ~]$ kubectl  version 
+Client Version: v1.33.3
+Kustomize Version: v5.6.0
+Server Version: v1.33.5
+
+```
+
