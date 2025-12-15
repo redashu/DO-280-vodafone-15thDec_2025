@@ -302,3 +302,22 @@ beginner-html-site-styled
 
 
 ```
+
+### understanding webapp deployment in general 
+
+<img src="webd.png">
+
+### lets build webapp container image 
+
+```
+ 102  docker build -t docker.io/dockerashu/ashu-appvodafone:v1  . 
+  103  docker login -u dockerashu
+  104  docker push docker.io/dockerashu/ashu-appvodafone:v1
+  105  history 
+[ashu@ip-172-31-35-119 web-app]$ ls
+Dockerfile  beginner-html-site-styled
+[ashu@ip-172-31-35-119 web-app]$ cat Dockerfile 
+FROM nginx
+COPY beginner-html-site-styled /usr/share/nginx/html/
+
+```
