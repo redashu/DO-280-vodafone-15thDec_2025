@@ -276,3 +276,29 @@ Removing login credentials for https://index.docker.io/v1/
 
 
 <img src="k8s3.png">
+
+### hint for task 
+
+```
+[ashu@ip-172-31-35-119 ~]$ ls
+ashu-project
+[ashu@ip-172-31-35-119 ~]$ cd ashu-project/
+[ashu@ip-172-31-35-119 ashu-project]$ ls
+java-app  python-app  web-app
+[ashu@ip-172-31-35-119 ashu-project]$ cd web-app/
+[ashu@ip-172-31-35-119 web-app]$ ls
+[ashu@ip-172-31-35-119 web-app]$ git clone https://github.com/mdn/beginner-html-site-styled.git
+Cloning into 'beginner-html-site-styled'...
+remote: Enumerating objects: 54, done.
+remote: Counting objects: 100% (2/2), done.
+remote: Total 54 (delta 1), reused 1 (delta 1), pack-reused 52 (from 2)
+Receiving objects: 100% (54/54), 128.76 KiB | 8.58 MiB/s, done.
+Resolving deltas: 100% (14/14), done.
+[ashu@ip-172-31-35-119 web-app]$ ls
+beginner-html-site-styled
+[ashu@ip-172-31-35-119 web-app]$ 
+
+
+
+
+```
