@@ -171,3 +171,28 @@ docker ps
 CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS     NAMES
 1aa5faf4cf3a   ashupython:v1   "python /ashuapp/hel…"   25 seconds ago   Up 24 seconds             ashuc1
 ```
+
+### checking output of app running in container 
+
+```
+ 51  docker logs ashuc1 
+   52  docker logs -f  ashuc1 
+```
+### few more operations 
+
+```
+ 55  docker stop ashuc1
+   56  docker ps
+   57  docker start ashuc1
+   58  docker ps
+   59  history 
+[ashu@ip-172-31-35-119 python-app]$ docker stop ashuc1
+ashuc1
+[ashu@ip-172-31-35-119 python-app]$ docker rm ashuc1
+ashuc1
+
+```
+### container life cycle 
+
+<img src="rm1.png">
+
