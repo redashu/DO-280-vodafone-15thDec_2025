@@ -211,3 +211,18 @@ ip-10-0-59-36.ec2.internal    Ready    control-plane,master   3h24m   v1.29.5+29
 ip-10-0-67-253.ec2.internal   Ready    control-plane,master   3h25m   v1.29.5+29c95f3
 ip-10-0-68-70.ec2.internal    Ready    worker                 3h15m   v1.29.5+29c95f3
 ```
+### creating first ever pod to ocp cluster from client machine 
+
+```
+[ashu@openshift ~]$ kubectl  get  pods
+No resources found in default namespace.
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ kubectl  run  ashupod1  --image  docker.io/dockerashu/ashu-appvodafone:v1  --port 80 
+pod/ashupod1 created
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ kubectl   get  pods
+NAME       READY   STATUS    RESTARTS   AGE
+ashupod1   1/1     Running   0          9s
+
+
+```
