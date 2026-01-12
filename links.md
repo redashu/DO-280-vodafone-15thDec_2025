@@ -5,3 +5,8 @@
 ### webapp code
 
 [click](https://github.com/mdn/beginner-html-site-styled.git)
+
+### kubernetes / ocp firewalls ports 
+
+[click](https://kubernetes.io/docs/reference/networking/ports-and-protocols/)
+

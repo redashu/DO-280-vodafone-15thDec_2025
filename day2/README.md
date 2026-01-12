@@ -360,3 +360,85 @@ ashu-app-deploy-6648ff475f-lvxt6         1/1     Running   0          25s
 
 ```
 
+### checking with node level networking and firewall ports 
+
+<img src="firewall.png">
+
+
+## Containet networking by CNI 
+
+<img src="cni1.png">
+
+### CNI bridge will assing iP address to pods and they can communicate to each other
+
+<img src="cni2.png">
+
+### checking pod ip 
+
+```
+## method 1
+
+[ashu@openshift ~]$ kubectl  describe  pod  ashu-app-deploy-6648ff475f-jrbk8  
+Name:             ashu-app-deploy-6648ff475f-jrbk8
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             ip-10-0-55-78.ec2.internal/10.0.55.78
+Start Time:       Mon, 12 Jan 2026 09:40:34 +0000
+Labels:           app=ashu-app-deploy
+                  pod-template-hash=6648ff475f
+Annotations:      k8s.ovn.org/pod-networks:
+                    {"default":{"ip_addresses":["10.131.0.36/23"],"mac_address":"0a:58:0a:83:00:24","gateway_ips":["10.131.0.1"],"routes":[{"dest":"10.128.0.0...
+                  k8s.v1.cni.cncf.io/network-status:
+                    [{
+                        "name": "ovn-kubernetes",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.131.0.36"
+                        ],
+                        "mac": "0a:58:0a:83:00:24",
+                        "default": true,
+                        "dns": {}
+                    }]
+Status:           Running
+IP:               10.131.0.36
+IPs:
+  IP:           10.131.0.36
+Controlled By:  ReplicaSet/ashu-app-deploy-6648ff475f
+Containers:
+  ashu-appvodafone:
+
+
+### method 2 
+
+kubectl   get  pods ashu-app-deploy-6648ff475f-jrbk8  -o wide 
+NAME                               READY   STATUS    RESTARTS   AGE   IP            NODE                         NOMINATED NODE   READINESS GATES
+ashu-app-deploy-6648ff475f-jrbk8   1/1     Running   0          45m   10.131.0.36   ip
+
+```
+
+### pod to pod communication testing 
+
+```
+ kubectl   exec -it  ashu-connect -- /bin/sh 
+/ # 
+/ # 
+/ # ping  10.131.0.36
+PING 10.131.0.36 (10.131.0.36): 56 data bytes
+64 bytes from 10.131.0.36: seq=0 ttl=42 time=2.739 ms
+64 bytes from 10.131.0.36: seq=1 ttl=42 time=2.761 ms
+^C
+--- 10.131.0.36 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 2.739/2.750/2.761 ms
+/ # ping  10.131.0.31
+PING 10.131.0.31 (10.131.0.31): 56 data bytes
+64 bytes from 10.131.0.31: seq=0 ttl=42 time=3.404 ms
+64 bytes from 10.131.0.31: seq=1 ttl=42 time=1.556 ms
+^C
+--- 10.131.0.31 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 1.556/2.480/3.404 ms
+/ # exit
+
+```
