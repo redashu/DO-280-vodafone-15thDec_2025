@@ -347,3 +347,16 @@ ashu-app-deploy-6648ff475f-lvxt6         1/1     Running   0          25s
 
 
 ```
+
+### scaling using cli 
+
+```
+66  kubectl   scale  deployment  ashu-app-deploy  --replicas=1
+   67  kubectl  get deploy 
+   68  kubectl   scale  deployment  ashu-app-deploy  --replicas=5
+   69  kubectl  get deploy 
+   70  kubectl  get pods
+   71  kubectl   scale  deployment  ashu-app-deploy  --replicas=1
+
+```
+
