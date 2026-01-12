@@ -241,3 +241,27 @@ pod "nileshpod1" deleted
 
 <img src="contr.png">
 
+### creating pod using deployment controller
+
+```
+kubectl  create  deployment   ashu-app-deploy  --image docker.io/dockerashu/ashu-appvodafone:v1 --port 80 
+deployment.apps/ashu-app-deploy created
+[ashu@openshift ~]$ kubectl get deployment 
+NAME              READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-app-deploy   1/1     1            1           12s
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ kubectl   get  pods
+NAME                               READY   STATUS    RESTARTS   AGE
+ashu-app-deploy-6648ff475f-5nhxn   1/1     Running   0          27s
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ kubectl delete pod ashu-app-deploy-6648ff475f-5nhxn
+pod "ashu-app-deploy-6648ff475f-5nhxn" deleted
+[ashu@openshift ~]$ kubectl   get  pods
+NAME                               READY   STATUS    RESTARTS   AGE
+ashu-app-deploy-6648ff475f-7z2r7   1/1     Running   0          3s
+[ashu@openshift ~]$ 
+
+```
