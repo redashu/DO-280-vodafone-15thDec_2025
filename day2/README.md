@@ -310,3 +310,40 @@ services                              svc                                       
 
 ```
 
+### create deployment using yaml file 
+
+```
+[ashu@openshift ~]$ kubectl   create  -f  ashudeploy1.yaml 
+deployment.apps/ashu-app-deploy created
+[ashu@openshift ~]$ kubectl  get deployment 
+NAME              READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-app-deploy   1/1     1            1           4s
+
+```
+
+### using kubectl apply / oc apply 
+
+```
+[ashu@openshift ~]$ kubectl apply   -f  ashudeploy1.yaml 
+Warning: resource deployments/ashu-app-deploy is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+deployment.apps/ashu-app-deploy configured
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ kubectl  get  deploy 
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-app-deploy         2/2     2            2           9m48s
+ayan-app-deploy         1/1     1            1           9m21s
+bik-app-deploy          1/1     1            1           9m37s
+darsh-app-deploy        1/1     1            1           9m3s
+jaya-app-deploy         1/1     1            1           8m36s
+kira-app-deploy         1/1     1            1           9m14s
+nilesh-vodaapp-deploy   1/1     1            1           8m49s
+rajeshdep1              1/1     1            1           9m9s
+rohit-app-deploy        1/1     1            1           114s
+vishal1-deployment      1/1     1            1           9m21s
+[ashu@openshift ~]$ kubectl  get pods
+NAME                                     READY   STATUS    RESTARTS   AGE
+ashu-app-deploy-6648ff475f-2lvb6         1/1     Running   0          9m55s
+ashu-app-deploy-6648ff475f-lvxt6         1/1     Running   0          25s
+
+
+```

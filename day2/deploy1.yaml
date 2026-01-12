@@ -4,14 +4,14 @@ metadata:
   creationTimestamp: null
   labels:
     app: ashu-app-deploy
-  name: ashu-app-deploy
+  name: ashu-app-deploy # name of deployment
 spec:
-  replicas: 1
+  replicas: 1 # number of pod replicas
   selector:
     matchLabels:
       app: ashu-app-deploy
   strategy: {}
-  template:
+  template: # pod template
     metadata:
       creationTimestamp: null
       labels:
