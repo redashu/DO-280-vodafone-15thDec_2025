@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashu-app-deploy
+  name: ashu-app-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ashu-app-deploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ashu-app-deploy
+    spec:
+      containers:
+      - image: docker.io/dockerashu/ashu-appvodafone:v1
+        name: ashu-appvodafone
+        ports:
+        - containerPort: 80
+        resources: {}

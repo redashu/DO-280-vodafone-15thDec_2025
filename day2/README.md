@@ -265,3 +265,48 @@ ashu-app-deploy-6648ff475f-7z2r7   1/1     Running   0          3s
 [ashu@openshift ~]$ 
 
 ```
+
+### originally all ocp resources are getting converted into YAML/JSON file format
+
+<img src="file1.png">
+
+### checking apiVersion for all ocp resources
+
+```
+shu@openshift ~]$ kubectl  api-resources 
+NAME                                  SHORTNAMES                                                                             APIVERSION                                    NAMESPACED   KIND
+bindings                                                                                                                     v1                                            true         Binding
+componentstatuses                     cs                                                                                     v1                                            false        ComponentStatus
+configmaps                            cm                                                                                     v1                                            true         ConfigMap
+endpoints                             ep                                                                                     v1                                            true         Endpoints
+events                                ev                                                                                     v1                                            true         Event
+limitranges                           limits                                                                                 v1                                            true         LimitRange
+namespaces                            ns                                                                                     v1                                            false        Namespace
+nodes                                 no                                                                                     v1                                            false        Node
+persistentvolumeclaims                pvc                                                                                    v1                                            true         PersistentVolumeClaim
+persistentvolumes                     pv                                                                                     v1                                            false        PersistentVolume
+pods                                  po                                                                                     v1                                            true         Pod
+podtemplates                                                                                                                 v1                                            true         PodTemplate
+replicationcontrollers                rc                                                                                     v1                                            true         ReplicationController
+resourcequotas                        quota                                                                                  v1                                            true         ResourceQuota
+secrets                                                                                                                      v1                                            true         Secret
+serviceaccounts                       sa                                                                                     v1                                            true         ServiceAccount
+services                              svc                                                                                    v1                                            true         Service
+
+```
+### history of some useful oc/kubectl options 
+
+```
+38  kubectl  run  ashupod1  --image  docker.io/dockerashu/ashu-appvodafone:v1  --port 80  --dry-run=client 
+   39  kubectl  get  pods
+   40  kubectl  run  ashupod1  --image  docker.io/dockerashu/ashu-appvodafone:v1  --port 80 --dry-run=client -o yaml 
+   41  history 
+   42  kubectl  create  deployment   ashu-app-deploy  --image docker.io/dockerashu/ashu-appvodafone:v1 --port 80 --dry-run=client
+   43  kubectl  get deploy
+   44  kubectl  create  deployment   ashu-app-deploy  --image docker.io/dockerashu/ashu-appvodafone:v1 --port 80 --dry-run=client  -o yaml 
+   45  history 
+   46  kubectl  create  deployment   ashu-app-deploy  --image docker.io/dockerashu/ashu-appvodafone:v1 --port 80 --dry-run=client  -o yaml   >ashudeploy1.yaml
+   47  ls
+
+```
+
