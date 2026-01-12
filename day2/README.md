@@ -537,3 +537,49 @@ kubernetes   10.0.4.37:6443,10.0.59.36:6443,10.0.67.253:6443   8h
 [ashu@openshift ~]$ 
 
 ```
+### history 
+
+```
+ 89  kubectl  get  service 
+   90  oc  get  pods
+   91  oc  get  deployment 
+   92  oc  get  service 
+   93  history 
+   94  kubectl  create  service 
+   95  kubectl  create  service clusterip  ashulb1  --tcp  1234:80  --dry-run=client -o yaml 
+   96  kubectl  create  service clusterip  ashulb1  --tcp  1234:80  
+   97  kubectl  get  service
+   98  kubectl   get pods
+   99  kubectl   get svc
+  100  kubectl   get  pods
+  101  kubectl   get  pods --show-labels
+  102  kubectl   get svc
+  103  kubectl   get  endpoints 
+  104  kubectl  create  service clusterip  ashulb1  --tcp  1234:80  --dry-run=client -o yaml >service1.yaml 
+  105  ls
+  106  kubectl  get po --show-labels 
+  107  vim service1.yaml 
+  108  kubectl replace -f service1.yaml --force 
+  109  kubectl  get service 
+  110  kubectl get  ep 
+  111  kubectl  get po -o wide 
+  112  history 
+  113  kubectl  get po -o wide 
+  114  kubectl get  ep 
+  115  cat service1.yaml 
+  116  kubectl get svc 
+  117  kubectl  delete svc ashulb1
+  118  kubectl get svc 
+  119  kubectl get svc  -w
+  120  hsi
+  121  history 
+  122  kubectl get svc 
+  123  kubectl  get  deploy 
+  124  kubectl  expose deploy ashu-app-deploy --type ClusterIP   --port 1234  --target-port 80 --name ashulb2
+  125  kubectl  get  servcie 
+  126  kubectl  get svc
+  127  kubectl  get  ep 
+  128  history 
+  129  kubectl  get  ep 
+
+```
