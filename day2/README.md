@@ -78,4 +78,53 @@ dershana/darshu-webappvodafone   version1    bbf02c912118   3 weeks ago   152MB
 dockerashu/ashu-appvodafone      v1          a9913b5bf31f   3 weeks ago   152MB
 dockerashu/vodafone-apps         versionv1   e3e553845411   3 weeks ago   1.12GB
 
+
 ```
+
+### OCP architecture layer 
+
+<img src="l1.png">
+
+### building one container image with sample webapp code
+
+```
+mkdir   myapps
+mkdir: cannot create directory ‘myapps’: File exists
+[ashu@ip-172-31-17-7 ~]$ ls
+myapps
+[ashu@ip-172-31-17-7 ~]$ cd myapps/
+[ashu@ip-172-31-17-7 myapps]$ git clone https://github.com/codingstella/vCard-personal-portfolio.git
+Cloning into 'vCard-personal-portfolio'...
+remote: Enumerating objects: 72, done.
+remote: Counting objects: 100% (22/22), done.
+remote: Compressing objects: 100% (18/18), done.
+remote: Total 72 (delta 9), reused 4 (delta 4), pack-reused 50 (from 1)
+Receiving objects: 100% (72/72), 1.13 MiB | 58.01 MiB/s, done.
+Resolving deltas: 100% (9/9), done.
+[ashu@ip-172-31-17-7 myapps]$ ls
+vCard-personal-portfolio
+[ashu@ip-172-31-17-7 myapps]$ 
+
+===>
+ 21  cd vCard-personal-portfolio/
+   22  ls
+   23  ls -a
+   24  touch Dockerfile 
+   25  ls
+   26  touch  .dockerignore 
+   27  ls -a
+   28  history 
+[ashu@ip-172-31-17-7 vCard-personal-portfolio]$ ls -a
+.  ..  .dockerignore  .git  Dockerfile  README.md  assets  index.html  index.txt  website-demo-image
+[ashu@ip-172-31-17-7 vCard-personal-portfolio]$ vim .dockerignore 
+[ashu@ip-172-31-17-7 vCard-personal-portfolio]$ ls -a
+.  ..  .dockerignore  .git  Dockerfile  README.md  assets  index.html  index.txt  website-demo-image
+[ashu@ip-172-31-17-7 vCard-personal-portfolio]$ cat .dockerignore 
+Dockerfile
+.dockerignore
+.git
+README.md
+index.txt
+
+```
+
