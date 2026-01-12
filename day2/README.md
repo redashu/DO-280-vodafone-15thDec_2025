@@ -494,4 +494,46 @@ NAME         TYPE           CLUSTER-IP      EXTERNAL-IP                         
 ashulb1      ClusterIP      172.30.188.69   <none>                                 1234/TCP   6s
 
 ```
-### 
+### more info about LB internal 
+
+<img src="lbn.png">
+
+
+### service will find pods using labels and store in endpoints 
+
+<img src="lbe.png">
+
+### using kubectl expose command to create service 
+
+```
+[ashu@openshift ~]$ kubectl  get  deploy 
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-app-deploy         1/1     1            1           145m
+ayan-app-deploy         1/1     1            1           145m
+bik-app-deploy          1/1     1            1           145m
+darsh-app-deploy        1/1     1            1           145m
+dipak-app-deploy        1/1     1            1           135m
+jaya-app-deploy         1/1     1            1           144m
+kira-app-deploy         1/1     1            1           145m
+nilesh-vodaapp-deploy   1/1     1            1           144m
+rajeshdep1              1/1     1            1           145m
+rohit-app-deploy        1/1     1            1           137m
+vishal1-deployment      1/1     1            1           145m
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ kubectl  expose deploy ashu-app-deploy --type ClusterIP   --port 1234  --target-port 80 --name ashulb2
+service/ashulb2 exposed
+[ashu@openshift ~]$ kubectl  get  servcie 
+error: the server doesn't have a resource type "servcie"
+[ashu@openshift ~]$ kubectl  get svc
+NAME         TYPE           CLUSTER-IP       EXTERNAL-IP                            PORT(S)    AGE
+ashulb2      ClusterIP      172.30.110.185   <none>                                 1234/TCP   21s
+kubernetes   ClusterIP      172.30.0.1       <none>                                 443/TCP    8h
+openshift    ExternalName   <none>           kubernetes.default.svc.cluster.local   <none>     8h
+[ashu@openshift ~]$ kubectl  get  ep 
+NAME         ENDPOINTS                                         AGE
+ashulb2      10.131.0.36:80                                    27s
+kubernetes   10.0.4.37:6443,10.0.59.36:6443,10.0.67.253:6443   8h
+[ashu@openshift ~]$ 
+
+```
