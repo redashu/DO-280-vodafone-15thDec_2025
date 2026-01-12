@@ -1,9 +1,9 @@
 # DO-280-vodafone-15thDec_2025
 
-### checking docker thing 
+## Checking docker thing
 
-```
-humanfirmware@darwin  ~  ssh  ashu@3.210.241.71
+```bash
+humanfirmware@darwin  ~  ssh  ashu@3.210.241.71
 ashu@3.210.241.71's password: 
    ,     #_
    ~\_  ####_        Amazon Linux 2023
@@ -25,13 +25,11 @@ Client:
  Built:             Wed Dec 10 00:00:00 2025
  OS/Arch:           linux/amd64
  Context:           default
-
-
 ```
 
-### pulling all docker images we built 
+## Pulling all docker images we built
 
-```
+```bash
 ashu@ip-172-31-17-7 ~]$ docker  images
 REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 [ashu@ip-172-31-17-7 ~]$ 
@@ -57,8 +55,6 @@ REPOSITORY                 TAG         IMAGE ID       CREATED       SIZE
 dockerashu/vodafone-apps   versionv1   e3e553845411   3 weeks ago   1.12GB
 [ashu@ip-172-31-17-7 ~]$ 
 
---->
-
 docker pull dockerashu/ashu-appvodafone:v1
 v1: Pulling from dockerashu/ashu-appvodafone
 5ba766340b3d: Already exists 
@@ -77,19 +73,17 @@ REPOSITORY                       TAG         IMAGE ID       CREATED       SIZE
 dershana/darshu-webappvodafone   version1    bbf02c912118   3 weeks ago   152MB
 dockerashu/ashu-appvodafone      v1          a9913b5bf31f   3 weeks ago   152MB
 dockerashu/vodafone-apps         versionv1   e3e553845411   3 weeks ago   1.12GB
-
-
 ```
 
-### OCP architecture layer 
+## OCP architecture layer
 
-<img src="l1.png">
+![OCP Architecture Layer](l1.png)
 
-### building one container image with sample webapp code
+## Building one container image with sample webapp code
 
-```
+```bash
 mkdir   myapps
-mkdir: cannot create directory ‘myapps’: File exists
+mkdir: cannot create directory 'myapps': File exists
 [ashu@ip-172-31-17-7 ~]$ ls
 myapps
 [ashu@ip-172-31-17-7 ~]$ cd myapps/
@@ -105,15 +99,14 @@ Resolving deltas: 100% (9/9), done.
 vCard-personal-portfolio
 [ashu@ip-172-31-17-7 myapps]$ 
 
-===>
- 21  cd vCard-personal-portfolio/
-   22  ls
-   23  ls -a
-   24  touch Dockerfile 
-   25  ls
-   26  touch  .dockerignore 
-   27  ls -a
-   28  history 
+21  cd vCard-personal-portfolio/
+22  ls
+23  ls -a
+24  touch Dockerfile 
+25  ls
+26  touch  .dockerignore 
+27  ls -a
+28  history 
 [ashu@ip-172-31-17-7 vCard-personal-portfolio]$ ls -a
 .  ..  .dockerignore  .git  Dockerfile  README.md  assets  index.html  index.txt  website-demo-image
 [ashu@ip-172-31-17-7 vCard-personal-portfolio]$ vim .dockerignore 
@@ -125,40 +118,37 @@ Dockerfile
 .git
 README.md
 index.txt
-
 ```
 
-### building container image
+## Building container image
 
-```
+```bash
 38  docker build -t  ashuapp:v0011 . 
-   39  history 
+39  history 
 [ashu@ip-172-31-17-7 vCard-personal-portfolio]$ ls
 Dockerfile  README.md  assets  index.html  index.txt  website-demo-image
 [ashu@ip-172-31-17-7 vCard-personal-portfolio]$ docker images
 REPOSITORY                       TAG         IMAGE ID       CREATED          SIZE
 ashuapp                          v0011       942889ad2679   10 seconds ago   162MB
-
-```
-### app is running in container env 
-
-```
- 41  docker images
-   42  docker run -itd --name ashuc1  -p 1234:80 ashuapp:v0011
-   43  docker ps
-
 ```
 
-### stop container and remove 
+## App is running in container env
 
+```bash
+41  docker images
+42  docker run -itd --name ashuc1  -p 1234:80 ashuapp:v0011
+43  docker ps
 ```
+
+## Stop container and remove
+
+```bash
 docker  rm ashuc1 -f
 ```
 
+## Pushing image to docker hub
 
-### pushing image to docker hub 
-
-```
+```bash
 [ashu@ip-172-31-17-7 vCard-personal-portfolio]$ docker  tag  ashuapp:v0011  dockerashu/ashu-appvodafone:v2
 [ashu@ip-172-31-17-7 vCard-personal-portfolio]$ docker login 
 Log in with your Docker ID or email address to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com/ to create one.
@@ -183,5 +173,41 @@ f248169098dd: Mounted from library/nginx
 6a7f953ae30c: Mounted from library/nginx 
 v2: digest: sha256:ac262c567024007d15d828ef82b589ac106157e697a14a4437355ba65f8f8d58 size: 1989
 [ashu@ip-172-31-17-7 vCard-personal-portfolio]$ 
+```
 
+## Connection OCP cluster using kubectl with auth
+
+```bash
+kubectl   get nodes  --kubeconfig   /opt/ocp/kubeconfig   
+NAME                          STATUS   ROLES                  AGE     VERSION
+ip-10-0-28-245.ec2.internal   Ready    worker                 3h13m   v1.29.5+29c95f3
+ip-10-0-4-37.ec2.internal     Ready    control-plane,master   3h23m   v1.29.5+29c95f3
+ip-10-0-55-78.ec2.internal    Ready    worker                 3h13m   v1.29.5+29c95f3
+ip-10-0-59-36.ec2.internal    Ready    control-plane,master   3h23m   v1.29.5+29c95f3
+ip-10-0-67-253.ec2.internal   Ready    control-plane,master   3h23m   v1.29.5+29c95f3
+ip-10-0-68-70.ec2.internal    Ready    worker                 3h13m   v1.29.5+29c95f3
+```
+
+## Copy auth file to default location with default name
+
+```bash
+[ashu@openshift ~]$ mkdir  ~/.kube/
+mkdir: cannot create directory '/home/ashu/.kube/': File exists
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ cp -v /opt/ocp/kubeconfig   ~/.kube/config 
+'/opt/ocp/kubeconfig' -> '/home/ashu/.kube/config'
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ 
+[ashu@openshift ~]$ kubectl   version 
+Client Version: v1.29.1
+Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+Server Version: v1.29.5+29c95f3
+[ashu@openshift ~]$ kubectl   get nodes
+NAME                          STATUS   ROLES                  AGE     VERSION
+ip-10-0-28-245.ec2.internal   Ready    worker                 3h15m   v1.29.5+29c95f3
+ip-10-0-4-37.ec2.internal     Ready    control-plane,master   3h25m   v1.29.5+29c95f3
+ip-10-0-55-78.ec2.internal    Ready    worker                 3h15m   v1.29.5+29c95f3
+ip-10-0-59-36.ec2.internal    Ready    control-plane,master   3h24m   v1.29.5+29c95f3
+ip-10-0-67-253.ec2.internal   Ready    control-plane,master   3h25m   v1.29.5+29c95f3
+ip-10-0-68-70.ec2.internal    Ready    worker                 3h15m   v1.29.5+29c95f3
 ```
