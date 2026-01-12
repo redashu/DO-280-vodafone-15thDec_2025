@@ -226,3 +226,18 @@ ashupod1   1/1     Running   0          9s
 
 
 ```
+
+### deleting pod 
+
+```
+kubectl delete pod rohitpod2 t1 nileshpod2  nileshpod1
+pod "rohitpod2" deleted
+pod "t1" deleted
+pod "nileshpod2" deleted
+pod "nileshpod1" deleted
+
+```
+### to create pod we gonna use controllers 
+
+<img src="contr.png">
+
