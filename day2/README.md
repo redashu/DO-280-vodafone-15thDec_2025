@@ -128,3 +128,60 @@ index.txt
 
 ```
 
+### building container image
+
+```
+38  docker build -t  ashuapp:v0011 . 
+   39  history 
+[ashu@ip-172-31-17-7 vCard-personal-portfolio]$ ls
+Dockerfile  README.md  assets  index.html  index.txt  website-demo-image
+[ashu@ip-172-31-17-7 vCard-personal-portfolio]$ docker images
+REPOSITORY                       TAG         IMAGE ID       CREATED          SIZE
+ashuapp                          v0011       942889ad2679   10 seconds ago   162MB
+
+```
+### app is running in container env 
+
+```
+ 41  docker images
+   42  docker run -itd --name ashuc1  -p 1234:80 ashuapp:v0011
+   43  docker ps
+
+```
+
+### stop container and remove 
+
+```
+docker  rm ashuc1 -f
+```
+
+
+### pushing image to docker hub 
+
+```
+[ashu@ip-172-31-17-7 vCard-personal-portfolio]$ docker  tag  ashuapp:v0011  dockerashu/ashu-appvodafone:v2
+[ashu@ip-172-31-17-7 vCard-personal-portfolio]$ docker login 
+Log in with your Docker ID or email address to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com/ to create one.
+You can log in with your password or a Personal Access Token (PAT). Using a limited-scope PAT grants better security and is required for organizations using SSO. Learn more at https://docs.docker.com/go/access-tokens/
+
+Username: dockerashu
+Password: 
+WARNING! Your password will be stored unencrypted in /home/ashu/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[ashu@ip-172-31-17-7 vCard-personal-portfolio]$ docker push dockerashu/ashu-appvodafone:v2
+The push refers to repository [docker.io/dockerashu/ashu-appvodafone]
+84d2754b6213: Pushed 
+7bc3e3f1caf4: Mounted from library/nginx 
+a91b21b8651d: Mounted from library/nginx 
+f248169098dd: Mounted from library/nginx 
+62bbe9e286ea: Mounted from library/nginx 
+675cd787fdd9: Mounted from library/nginx 
+22851f4f9a0b: Mounted from library/nginx 
+6a7f953ae30c: Mounted from library/nginx 
+v2: digest: sha256:ac262c567024007d15d828ef82b589ac106157e697a14a4437355ba65f8f8d58 size: 1989
+[ashu@ip-172-31-17-7 vCard-personal-portfolio]$ 
+
+```
