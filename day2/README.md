@@ -442,3 +442,56 @@ round-trip min/avg/max = 1.556/2.480/3.404 ms
 / # exit
 
 ```
+
+## Intro to service resources for creating internal LB in ocp 
+
+<img src="ocp1.png">
+
+
+### creating service in ocp 
+
+```
+kubectl  create  service 
+Create a service using a specified subcommand.
+
+Aliases:
+service, svc
+
+Available Commands:
+  clusterip      Create a ClusterIP service
+  externalname   Create an ExternalName service
+  loadbalancer   Create a LoadBalancer service
+  nodeport       Create a NodePort service
+
+Usage:
+  kubectl create service [flags] [options]
+
+
+===>
+ kubectl  create  service clusterip  ashulb1  --tcp  1234:80  --dry-run=client -o yaml 
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashulb1
+  name: ashulb1
+spec:
+  ports:
+  - name: 1234-80
+    port: 1234
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: ashulb1
+  type: ClusterIP
+status:
+  loadBalancer: {}
+[ashu@openshift ~]$ kubectl  create  service clusterip  ashulb1  --tcp  1234:80  
+service/ashulb1 created
+[ashu@openshift ~]$ kubectl  get  service
+NAME         TYPE           CLUSTER-IP      EXTERNAL-IP                            PORT(S)    AGE
+ashulb1      ClusterIP      172.30.188.69   <none>                                 1234/TCP   6s
+
+```
+### 
