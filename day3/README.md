@@ -125,5 +125,5 @@ router-internal-default   ClusterIP      172.30.253.66    <none>                
 ### creating route 
 
 ```
-oc create route  edge ashu-app-route --service ashu-deploy1 
+oc create route  edge ashu-app-route --service ashu-deploy1  --port 1234
 ```
