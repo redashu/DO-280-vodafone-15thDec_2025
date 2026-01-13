@@ -256,3 +256,40 @@ ashusvc9   ashusvc9-default.apps.mayank.openshiftlab.xyz          ashusvc9   80 
 
 
 ```
+
+### checking ocp console 
+
+```
+[ec2-user@openshift ~]$ oc whoami
+kube:admin
+
+[ec2-user@openshift ~]$ oc whoami --show-console 
+https://console-openshift-console.apps.mayank.openshiftlab.xyz
+
+
+[ec2-user@openshift ~]$ 
+[ec2-user@openshift ~]$ 
+[ec2-user@openshift ~]$ oc projects  | grep -i console 
+    openshift-console
+    openshift-console-operator
+    openshift-console-user-settings
+
+[ec2-user@openshift ~]$ oc  get deploy -n openshift-console
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+console     2/2     2            2           31h
+downloads   2/2     2            2           31h
+[ec2-user@openshift ~]$ oc  get svc  -n openshift-console
+
+NAME        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+console     ClusterIP   172.30.163.23   <none>        443/TCP   31h
+downloads   ClusterIP   172.30.77.60    <none>        80/TCP    31h
+
+[ec2-user@openshift ~]$ oc  get routes  -n openshift-console
+NAME        HOST/PORT                                                  PATH   SERVICES    PORT    TERMINATION          WILDCARD
+console     console-openshift-console.apps.mayank.openshiftlab.xyz            console     https   reencrypt/Redirect   None
+downloads   downloads-openshift-console.apps.mayank.openshiftlab.xyz          downloads   http    edge/Redirect        None
+[ec2-user@openshift ~]$ 
+
+
+```
+
