@@ -293,3 +293,35 @@ downloads   downloads-openshift-console.apps.mayank.openshiftlab.xyz          do
 
 ```
 
+### some history 
+
+```
+167  oc replace -f app-deploy1/deploy.yaml --force
+  168  oc get deploy ashu-local-app 
+  169  oc get pod
+  170  oc replace -f app-deploy1/deploy.yaml --force
+  171  oc get deploy ashu-local-app 
+  172  oc get pod
+  173  oc apply  -f app-deploy1/deploy.yaml 
+  174  oc get deploy ashu-local-app 
+```
+
+### creating a brand new project 
+
+```
+oc  new-project  ashu-project --display-name="ashutoshh test project"
+Now using project "ashu-project" on server "https://api.mayank.openshiftlab.xyz:6443".
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app rails-postgresql-example
+
+to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.43 -- /agnhost serve-hostname
+
+[ec2-user@openshift ~]$ oc project
+Using project "ashu-project" on server "https://api.mayank.openshiftlab.xyz:6443".
+[ec2-user@openshift ~]$ 
+
+```
