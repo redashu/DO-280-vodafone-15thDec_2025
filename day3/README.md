@@ -171,3 +171,27 @@ ashu-websvc   ashu-websvc-default.apps.mayank.openshiftlab.xyz          ashu-web
 
 <img src="routes1.png">
 
+### building docker image locally to ocp 
+
+```
+oc  new-build  --binary --strategy=docker  --name=ashu-webapp  --to=ashu-app:v1 
+    * A Docker build using binary input will be created
+      * The resulting image will be pushed to image stream tag "ashu-app:v1"
+      * A binary build was created, use 'oc start-build --from-dir' to trigger a new build
+
+--> Creating resources with label build=ashu-webapp ...
+    imagestream.image.openshift.io "ashu-app" created
+    buildconfig.build.openshift.io "ashu-webapp" created
+--> Success
+[ec2-user@openshift ashu-webapp]$ oc get  is
+NAME            IMAGE REPOSITORY                                                         TAGS   UPDATED
+ashu-app        image-registry.openshift-image-registry.svc:5000/default/ashu-app               
+bikram-apache   image-registry.openshift-image-registry.svc:5000/default/bikram-apache          
+facebook-app    image-registry.openshift-image-registry.svc:5000/default/facebook-app           
+[ec2-user@openshift ashu-webapp]$ oc  get  bc 
+NAME            TYPE     FROM     LATEST
+ashu-webapp     Docker   Binary   0
+ayan-webapp     Docker   Binary   0
+bikram-apache   Docker   Binary   0
+
+```
