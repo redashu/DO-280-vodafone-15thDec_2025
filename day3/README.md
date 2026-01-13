@@ -127,3 +127,11 @@ router-internal-default   ClusterIP      172.30.253.66    <none>                
 ```
 oc create route  edge ashu-app-route --service ashu-deploy1  --port 1234
 ```
+
+### deleting svc and routes 
+
+```
+ oc  delete  svc ashu-deploy1
+ oc delete route ashu-deploy1
+
+```
