@@ -242,3 +242,17 @@ NAME         TYPE           CLUSTER-IP      EXTERNAL-IP                         
 ashusvc9     ClusterIP      172.30.61.132   <none>                                 3344/TCP   3s
 
 ```
+
+### creating routes by exposing svc 
+
+```
+oc expose svc ashusvc9
+route/ashusvc9 exposed
+[ec2-user@openshift ~]$ 
+[ec2-user@openshift ~]$ oc get routes
+NAME       HOST/PORT                                       PATH   SERVICES   PORT   TERMINATION   WILDCARD
+ashusvc9   ashusvc9-default.apps.mayank.openshiftlab.xyz          ashusvc9   80                   None
+[ec2-user@openshift ~]$ 
+
+
+```
