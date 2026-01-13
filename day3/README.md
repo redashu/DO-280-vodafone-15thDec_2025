@@ -230,3 +230,15 @@ NAME             READY   UP-TO-DATE   AVAILABLE   AGE
 ashu-local-app   0/1     1            0           5s
 
 ```
+
+### creating svc as internal LB to reach app pods 
+
+```
+oc expose deploy ashu-local-app  --type ClusterIP --port 3344 --target-port 80  --name ashusvc9 --dry-run=client -o yaml   >app-deploy1/svc.yaml 
+[ec2-user@openshift ashu-manifestfiles]$ oc  create -f  app-deploy1/svc.yaml 
+service/ashusvc9 created
+[ec2-user@openshift ashu-manifestfiles]$ oc get svc
+NAME         TYPE           CLUSTER-IP      EXTERNAL-IP                            PORT(S)    AGE
+ashusvc9     ClusterIP      172.30.61.132   <none>                                 3344/TCP   3s
+
+```
