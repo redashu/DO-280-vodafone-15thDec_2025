@@ -135,3 +135,32 @@ oc create route  edge ashu-app-route --service ashu-deploy1  --port 1234
  oc delete route ashu-deploy1
 
 ```
+
+### exposing deployment to create svc
+
+```
+oc  expose  deployment ashu-deploy1  --type ClusterIP --port 1234 --target-port 80 --name ashu-websvc
+service/ashu-websvc exposed
+[ec2-user@openshift ~]$ oc get svc
+NAME            TYPE           CLUSTER-IP      EXTERNAL-IP                            PORT(S)    AGE
+ashu-websvc     ClusterIP      172.30.65.195   <none>                                 1234/TCP   19s
+kiran-deploy2   ClusterIP      172.30.38.240   <none>                                 1234/TCP   163m
+kubernetes      ClusterIP      172.30.0.1      <none>                                 443/TCP    3h3m
+openshift       ExternalName   <none>          kubernetes.default.svc.cluster.local   <none>     3h2m
+[ec2-user@openshift ~]$ oc  get  ep 
+NAME            ENDPOINTS                                         AGE
+ashu-websvc     10.131.0.17:80                                    27s
+
+```
+
+### expose svc to create route
+
+```
+oc expose svc ashu-websvc 
+route/ashu-websvc exposed
+[ec2-user@openshift ~]$ oc get  routes
+NAME          HOST/PORT                                          PATH   SERVICES      PORT   TERMINATION   WILDCARD
+ashu-websvc   ashu-websvc-default.apps.mayank.openshiftlab.xyz          ashu-websvc   80                   None
+[ec2-user@openshift ~]$ 
+
+```
