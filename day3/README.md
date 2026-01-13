@@ -85,3 +85,35 @@ kubernetes     ClusterIP      172.30.0.1     <none>                             
 openshift      ExternalName   <none>         kubernetes.default.svc.cluster.local   <none>     6m59s
 [ec2-user@openshift ashu-manifestfiles]$ 
 ```
+
+### creating nodeport service 
+
+```
+oc  expose deployment ashu-deploy1  --type NodePort --port 1234 --target-port 80 --name ashulb3 --dry-run=client -o yaml >ashunodeportsvc.yaml 
+[ec2-user@openshift ashu-manifestfiles]$ oc create -f ashunodeportsvc.yaml 
+service/ashulb3 created
+[ec2-user@openshift ashu-manifestfiles]$ oc get svc
+NAME               TYPE           CLUSTER-IP       EXTERNAL-IP                            PORT(S)          AGE
+ashu-deploy1       ClusterIP      172.30.82.94     <none>                                 1234/TCP         19m
+ashulb3            NodePort       172.30.53.52     <none>                                 1234:31367/TCP   3s
+
+```
+
+## checking openshift Ingress controller (openshift router)
+
+```
+oc get pods -n openshift-ingress
+NAME                             READY   STATUS    RESTARTS   AGE
+router-default-d97f4f994-94p6l   1/1     Running   1          27h
+router-default-d97f4f994-zpg6b   1/1     Running   1          27h
+[ec2-user@openshift ~]$ 
+[ec2-user@openshift ~]$ 
+[ec2-user@openshift ~]$ oc get deploy  -n openshift-ingress
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+router-default   2/2     2            2           27h
+[ec2-user@openshift ~]$ oc get svc  -n openshift-ingress
+NAME                      TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)                      AGE
+router-default            LoadBalancer   172.30.229.136   aae8d8f17b1ed4e978fbe909da8c7407-1826622764.us-east-1.elb.amazonaws.com   80:32117/TCP,443:32622/TCP   27h
+router-internal-default   ClusterIP      172.30.253.66    <none>                                                                    80/TCP,443/TCP,1936/TCP      27h
+
+```
