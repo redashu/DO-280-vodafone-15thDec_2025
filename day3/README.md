@@ -117,3 +117,13 @@ router-default            LoadBalancer   172.30.229.136   aae8d8f17b1ed4e978fbe9
 router-internal-default   ClusterIP      172.30.253.66    <none>                                                                    80/TCP,443/TCP,1936/TCP      27h
 
 ```
+
+### openshift routing rules 
+
+<img src="rules.png">
+
+### creating route 
+
+```
+oc create route  edge ashu-app-route --service ashu-deploy1 
+```
