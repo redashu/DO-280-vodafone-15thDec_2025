@@ -195,3 +195,38 @@ ayan-webapp     Docker   Binary   0
 bikram-apache   Docker   Binary   0
 
 ```
+
+### start building process
+
+```
+oc start-build ashu-webapp --from-dir=. --follow 
+Uploading directory "." as binary input for the build ...
+
+Uploading finished
+build.build.openshift.io/ashu-webapp-1 started
+Receiving source from STDIN as archive ...
+time="2026-01-13T09:40:16Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
+I0113 09:40:16.226433       1 defaults.go:112] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
+Caching blobs under "/var/cache/blobs".
+
+Pulling image nginx ...
+Resolving "nginx" using unqualified-search registries (/etc/containers/registries.conf)
+Trying to pull registry.redhat.io/nginx:latest...
+Trying to pull registry.access.redhat.com/nginx:latest...
+
+```
+## creating deployment using internal ocp image 
+
+```
+oc  create  deployment  ashu-local-app --image image-registry.openshift-image-registry.svc:5000/default/ashu-app:v1 --port 80 --dry-run=client  -o yaml  >app-deploy1/deploy.yaml 
+
+[ec2-user@openshift ashu-manifestfiles]$ 
+[ec2-user@openshift ashu-manifestfiles]$ oc  create -f app-deploy1/deploy.yaml 
+deployment.apps/ashu-local-app created
+
+
+[ec2-user@openshift ashu-manifestfiles]$ oc  get  deployment 
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-local-app   0/1     1            0           5s
+
+```
