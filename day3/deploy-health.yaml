@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashu-local-app
+  name: ashu-local-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ashu-local-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ashu-local-app
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/default/ashu-app:v1
+        name: ashu-app
+        ports:
+        - containerPort: 80
+        readinessProbe: # to configure app health check 
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          httpGet:
+            path: /health.html
+            port: 80 
+        resources: {}
+status: {}
