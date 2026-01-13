@@ -140,6 +140,7 @@ oc create route  edge ashu-app-route --service ashu-deploy1  --port 1234
 
 ```
 oc  expose  deployment ashu-deploy1  --type ClusterIP --port 1234 --target-port 80 --name ashu-websvc
+
 service/ashu-websvc exposed
 [ec2-user@openshift ~]$ oc get svc
 NAME            TYPE           CLUSTER-IP      EXTERNAL-IP                            PORT(S)    AGE
@@ -157,6 +158,7 @@ ashu-websvc     10.131.0.17:80                                    27s
 
 ```
 oc expose svc ashu-websvc 
+
 route/ashu-websvc exposed
 [ec2-user@openshift ~]$ oc get  routes
 NAME          HOST/PORT                                          PATH   SERVICES      PORT   TERMINATION   WILDCARD
@@ -164,3 +166,8 @@ ashu-websvc   ashu-websvc-default.apps.mayank.openshiftlab.xyz          ashu-web
 [ec2-user@openshift ~]$ 
 
 ```
+
+### we are creating api resources to get final access
+
+<img src="routes1.png">
+
