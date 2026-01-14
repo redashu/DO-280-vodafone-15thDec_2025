@@ -275,4 +275,37 @@ pvc-c939de3b-1e0c-40d9-9a6f-341a0e7ce4ef   5Gi        RWO            Delete     
 
 ```
 
+### understanding it more closely 
+
+<img src="db1.png">
+
+
+### more commands
+
+```
+ls
+ashu-db-pvc.yaml  dbcm.yaml  db-deploy.yaml  db-secret.yaml  registry_cred.yaml
+[ec2-user@openshift ashu-db-deploy]$ oc  delete  -f  . 
+persistentvolumeclaim "ashu-pvc" deleted
+deployment.apps "ashu-db" deleted
+secret "ashu-db-password" deleted
+configmap "ashu-cm1" deleted
+secret "ashu-img-secret" deleted
+[ec2-user@openshift ashu-db-deploy]$ cd ..
+[ec2-user@openshift ashu-manifestfiles]$ ls
+app-deploy1  ashu-db-deploy  ashu-deploy.yaml  ashunodeportsvc.yaml  ashusvc.yaml  ashu-webapp  day4pod.yaml  route1.yaml
+[ec2-user@openshift ashu-manifestfiles]$ oc create -f  ashu-db-deploy/
+persistentvolumeclaim/ashu-pvc created
+deployment.apps/ashu-db created
+secret/ashu-db-password created
+configmap/ashu-cm1 created
+secret/ashu-img-secret created
+[ec2-user@openshift ashu-manifestfiles]$ oc delete  -f  ashu-db-deploy/
+persistentvolumeclaim "ashu-pvc" deleted
+deployment.apps "ashu-db" deleted
+secret "ashu-db-password" deleted
+configmap "ashu-cm1" deleted
+secret "ashu-img-secret" deleted
+
+```
 
