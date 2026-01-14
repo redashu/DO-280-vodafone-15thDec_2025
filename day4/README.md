@@ -225,3 +225,16 @@ ashu-pvc   Pending                                      gp3-csi        <unset>  
 
 
 ```
+
+### after updating yaml of deployment 
+
+```
+oc replace -f db-deploy.yaml  --force
+
+oc get pods
+### checking pvc and pv 
+
+oc get pvc
+oc get pv 
+```
+
