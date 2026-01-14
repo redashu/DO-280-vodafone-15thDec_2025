@@ -175,3 +175,21 @@ exit
 [ec2-user@openshift ashu-db-deploy]$ 
 
 ```
+
+### checking memory 
+
+```
+ oc adm top pod 
+NAME                       CPU(cores)   MEMORY(bytes)   
+ashu-db-57bcbb7488-nqwhp   3m           437Mi           
+[ec2-user@openshift ~]$ oc adm top node 
+NAME                          CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
+ip-10-0-28-245.ec2.internal   277m         7%     3896Mi          26%       
+ip-10-0-4-37.ec2.internal     1228m        35%    11451Mi         77%       
+ip-10-0-55-78.ec2.internal    504m         14%    6551Mi          44%       
+ip-10-0-59-36.ec2.internal    1507m        43%    6584Mi          44%       
+ip-10-0-67-253.ec2.internal   1014m        28%    9991Mi          67%       
+ip-10-0-68-70.ec2.internal    492m         14%    6147Mi          41%       
+[ec2-user@openshift ~]$ 
+
+```
