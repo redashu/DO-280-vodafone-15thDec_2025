@@ -238,3 +238,11 @@ oc get pvc
 oc get pv 
 ```
 
+## creating registry secret to store registry crds
+
+```
+oc create  secret    docker-registry ashu-img-secret  --docker-server vodaserver.azurecr.io --docker-username vodase
+rver  --docker-password "hjkhhkh" --dry-run=client -o yaml >registry_cred.yaml
+
+```
+
