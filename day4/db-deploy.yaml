@@ -17,6 +17,10 @@ spec:
       labels:
         app: ashu-db
     spec:
+      volumes: # creating volume to attach /mount in container 
+      - name: ashu-volumedb1
+        persistentVolumeClaim: # we are looking to get storage from pvc
+          claimName: ashu-pvc
       containers:
       - image: mysql
         name: mysql
