@@ -21,8 +21,10 @@ spec:
       - name: ashu-volumedb1
         persistentVolumeClaim: # we are looking to get storage from pvc
           claimName: ashu-pvc
+      imagePullSecrets: # calling image pull secret 
+      - name: ashu-img-secret
       containers:
-      - image: dockerashu/mysql:vodafonev1
+      - image: vodaserver.azurecr.io/mysql:v1
         name: mysql
         volumeMounts: # to mount volume inside container 
         - name: ashu-volumedb1 # name of volume 
