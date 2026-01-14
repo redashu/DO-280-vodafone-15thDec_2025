@@ -215,5 +215,13 @@ No resources found
 [ec2-user@openshift ~]$ 
 
 
+===>
+oc create  -f ashu-db-pvc.yaml 
+persistentvolumeclaim/ashu-pvc created
+[ec2-user@openshift ashu-db-deploy]$ oc get pvc
+NAME       STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+ashu-pvc   Pending                                      gp3-csi        <unset>                 4s
+[ec2-user@openshift ashu-db-deploy]$ 
+
 
 ```
