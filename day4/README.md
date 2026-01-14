@@ -193,3 +193,8 @@ ip-10-0-68-70.ec2.internal    492m         14%    6147Mi          41%
 [ec2-user@openshift ~]$ 
 
 ```
+
+### storage in ocp 
+
+<img src="st1.png">
+
