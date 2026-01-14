@@ -246,3 +246,33 @@ rver  --docker-password "hjkhhkh" --dry-run=client -o yaml >registry_cred.yaml
 
 ```
 
+### lets deploy the db finally 
+
+```
+ls
+ashu-db-pvc.yaml  dbcm.yaml  db-deploy.yaml  db-secret.yaml  registry_cred.yaml
+[ec2-user@openshift ashu-db-deploy]$ 
+[ec2-user@openshift ashu-db-deploy]$ 
+[ec2-user@openshift ashu-db-deploy]$ kubectl  create  -f  ashu-db-pvc.yaml  -f db-deploy.yaml 
+persistentvolumeclaim/ashu-pvc created
+deployment.apps/ashu-db created
+[ec2-user@openshift ashu-db-deploy]$ oc get pvc
+NAME       STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+ashu-pvc   Bound    pvc-8023ca43-3570-49fb-9a3c-a1e1ef10a8ec   5Gi        RWO            gp3-csi        <unset>                 8s
+[ec2-user@openshift ashu-db-deploy]$ oc get deploy
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-db   0/1     1            0           15s
+[ec2-user@openshift ashu-db-deploy]$ oc get pod
+NAME                      READY   STATUS    RESTARTS   AGE
+ashu-db-7bf96f445-qgpwm   1/1     Running   0          19s
+[ec2-user@openshift ashu-db-deploy]$ oc get deploy
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-db   1/1     1            1           24s
+[ec2-user@openshift ashu-db-deploy]$ oc get pv
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                       STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+pvc-8023ca43-3570-49fb-9a3c-a1e1ef10a8ec   5Gi        RWO            Delete           Bound    ashu-project/ashu-pvc       gp3-csi        <unset>                          31s
+pvc-c939de3b-1e0c-40d9-9a6f-341a0e7ce4ef   5Gi        RWO            Delete           Bound    vishal-project/vishal-pvc   gp3-csi        <unset>                          5s
+
+```
+
+
