@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ashu-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce # Specifies how the volume can be mounted
+  resources:
+    requests:
+      storage: 5Gi # Requests a specific amount of storage
+  storageClassName: standard # Optional: Refers to a specific StorageClass for dynamic provisioning

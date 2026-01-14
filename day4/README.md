@@ -198,3 +198,22 @@ ip-10-0-68-70.ec2.internal    492m         14%    6147Mi          41%
 
 <img src="st1.png">
 
+
+### understanding pv and pvc
+
+<img src="st2.png">
+
+### to dynamically create pv we have storage class 
+
+```
+ oc  get  storageclass
+NAME                PROVISIONER       RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+gp2-csi             ebs.csi.aws.com   Delete          WaitForFirstConsumer   true                   2d5h
+gp3-csi (default)   ebs.csi.aws.com   Delete          WaitForFirstConsumer   true                   2d5h
+[ec2-user@openshift ~]$ oc  get pv
+No resources found
+[ec2-user@openshift ~]$ 
+
+
+
+```
