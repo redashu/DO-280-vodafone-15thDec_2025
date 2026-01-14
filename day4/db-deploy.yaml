@@ -22,8 +22,11 @@ spec:
         persistentVolumeClaim: # we are looking to get storage from pvc
           claimName: ashu-pvc
       containers:
-      - image: mysql
+      - image: dockerashu/mysql:vodafonev1
         name: mysql
+        volumeMounts: # to mount volume inside container 
+        - name: ashu-volumedb1 # name of volume 
+          mountPath: /var/lib/mysql/ # location inside container 
         ports:
         - containerPort: 3306
         env: # to pass env vairable and its vaules 
