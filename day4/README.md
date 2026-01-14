@@ -85,3 +85,24 @@ ashu-db-password           Opaque                    1      3s
 builder-dockercfg-wkw92    kubernetes.io/dockercfg   1      17h
 
 ```
+
+### using configMap to store data 
+
+```
+oc create  configmap ashu-cm1  --from-literal  dbname=ashudb --dry-run=client -o yaml 
+apiVersion: v1
+data:
+  dbname: ashudb
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: ashu-cm1
+[ec2-user@openshift ashu-db-deploy]$ oc create  configmap ashu-cm1  --from-literal  dbname=ashudb --dry-run=client -o yaml >dbcm.yaml
+[ec2-user@openshift ashu-db-deploy]$ oc create -f dbcm.yaml 
+configmap/ashu-cm1 created
+[ec2-user@openshift ashu-db-deploy]$ oc get configmap 
+NAME                       DATA   AGE
+ashu-cm1                   1      6s
+kube-root-ca.crt           1      18h
+
+```

@@ -29,6 +29,9 @@ spec:
               key: ashudbpass # key 
               name: ashu-db-password # name of secret  
         - name: MYSQL_DATABASE
-          value: ashudb
+          valueFrom: # using to fetch 
+            configMapKeyRef:
+              key: dbname # key of cm 
+              name: ashu-cm1 # name of cm 
         resources: {}
 status: {}
