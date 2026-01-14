@@ -106,3 +106,27 @@ ashu-cm1                   1      6s
 kube-root-ca.crt           1      18h
 
 ```
+### finally doing db deployment 
+
+```
+ oc get deploy 
+No resources found in ashu-project namespace.
+[ec2-user@openshift ashu-db-deploy]$ ls
+dbcm.yaml  db-deploy.yaml  db-secret.yaml
+[ec2-user@openshift ashu-db-deploy]$ 
+[ec2-user@openshift ashu-db-deploy]$ 
+[ec2-user@openshift ashu-db-deploy]$ oc create -f db-deploy.yaml 
+deployment.apps/ashu-db created
+[ec2-user@openshift ashu-db-deploy]$ oc get deploy 
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-db   1/1     1            1           7s
+[ec2-user@openshift ashu-db-deploy]$ oc get pod
+NAME                     READY   STATUS    RESTARTS   AGE
+ashu-db-cd579776-ss57d   1/1     Running   0          11s
+[ec2-user@openshift ashu-db-deploy]$ oc logs  ashu-db-cd579776-ss57d  
+2026-01-14 06:34:00+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 9.5.0-1.el9 started.
+2026-01-14 06:34:01+00:00 [Note] [Entrypoint]: Initializing database files
+2026-01-14T06:34:01.076850Z 0 [System] [MY-015017] [Server] MySQL Server Initialization - start.
+2026-01-14T06:34:01.078998Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 9
+
+```
