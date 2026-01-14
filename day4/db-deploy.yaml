@@ -33,5 +33,11 @@ spec:
             configMapKeyRef:
               key: dbname # key of cm 
               name: ashu-cm1 # name of cm 
-        resources: {}
+        resources: # setting resources info 
+          requests:
+            cpu: 100m # 1 vcpu = 1000m 
+            memory: 400M 
+          limits: 
+            cpu: 400m 
+            memory: 900M 
 status: {}
