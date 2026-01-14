@@ -130,3 +130,48 @@ ashu-db-cd579776-ss57d   1/1     Running   0          11s
 2026-01-14T06:34:01.078998Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 9
 
 ```
+
+### login with db to check details 
+
+```
+oc get pods
+NAME                     READY   STATUS    RESTARTS   AGE
+ashu-db-cd579776-ss57d   1/1     Running   0          19m
+
+[ec2-user@openshift ashu-db-deploy]$ 
+
+[ec2-user@openshift ashu-db-deploy]$ oc rsh  ashu-db-cd579776-ss57d
+sh-5.1$ 
+sh-5.1$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 9.5.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ashudb             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.004 sec)
+
+mysql> exit;
+Bye
+sh-5.1$ exit
+exit
+[ec2-user@openshift ashu-db-deploy]$ 
+
+```
