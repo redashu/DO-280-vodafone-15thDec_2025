@@ -24,7 +24,10 @@ spec:
         - containerPort: 3306
         env: # to pass env vairable and its vaules 
         - name: MYSQL_ROOT_PASSWORD
-          value: MYdbPass12345
+          valueFrom: # reading value from somewhere 
+            secretKeyRef: # reading from secret 
+              key: ashudbpass # key 
+              name: ashu-db-password # name of secret  
         - name: MYSQL_DATABASE
           value: ashudb
         resources: {}
