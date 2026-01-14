@@ -308,4 +308,8 @@ configmap "ashu-cm1" deleted
 secret "ashu-img-secret" deleted
 
 ```
+### understanding resource quota 
+
+<img src="resq.png">
+
 
