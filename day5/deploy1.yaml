@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashud5
+  name: ashud5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ashud5
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ashud5
+    spec:
+      imagePullSecrets: # calling secret to pull the private image 
+      - name: ashu-img-secret
+      containers:
+      - image: vodaserver.azurecr.io/nginx:v1
+        name: nginx
+        resources: {}
+status: {}

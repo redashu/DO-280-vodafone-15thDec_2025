@@ -151,3 +151,56 @@ You have one project on this server: dev
 [root@openshift ~]# 
 
 ```
+### creating a brand new project 
+
+```
+oc whoami
+dev1
+[root@openshift ~]# oc project 
+No project has been set. Pass a project name to make that the default.
+[root@openshift ~]# 
+[root@openshift ~]# 
+[root@openshift ~]# oc new-project ashu-final-day
+Now using project "ashu-final-day" on server "https://api.mayank.openshiftlab.xyz:6443".
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app rails-postgresql-example
+
+to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.43 -- /agnhost serve-hostname
+
+[root@openshift ~]# oc project
+Using project "ashu-final-day" on server "https://api.mayank.openshiftlab.xyz:6443".
+[root@openshift ~]# 
+
+```
+
+### creating deployment using private image 
+
+```
+### secret creation 
+
+oc create  secret    docker-registry ashu-img-secret  --docker-server vodaserver.azurecr.io --docker-username vodaserver  --docker-password "xsdfsdf1" --dry-run=client -o yaml >registry_cred.yaml
+ 
+oc create -f registry_cred.yaml 
+### deployment creation 
+
+oc create deployment ashud5 --image vodaserver.azurecr.io/nginx:v1 --dry-run=client -o yaml >deploy1.yaml 
+
+```
+
+### updated yaml
+
+```
+oc create -f deploy1.yaml 
+deployment.apps/ashud5 created
+[ec2-user@openshift final-day-yamls]$ oc get deploy
+NAME     READY   UP-TO-DATE   AVAILABLE   AGE
+ashud5   0/1     1            0           4s
+[ec2-user@openshift final-day-yamls]$ 
+
+
+```
+
