@@ -204,3 +204,10 @@ ashud5   0/1     1            0           4s
 
 ```
 
+### allow default sa to use anyuid as scc in ashu-final-day project
+
+```
+oc adm policy add-scc-to-user   anyuid -z default -n  ashu-final-day
+
+```
+
