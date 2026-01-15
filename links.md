@@ -14,3 +14,7 @@
 
 [click](https://github.com/containernetworking/cni)
 
+### DO280 exam topics 
+
+[click](https://www.redhat.com/en/services/training/red-hat-openshift-administration-ii-configuring-a-production-cluster)
+
