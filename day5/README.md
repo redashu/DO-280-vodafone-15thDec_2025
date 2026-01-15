@@ -211,3 +211,41 @@ oc adm policy add-scc-to-user   anyuid -z default -n  ashu-final-day
 
 ```
 
+### HPA with metric server
+
+```
+oc get pod -n openshift-monitoring
+NAME                                                     READY   STATUS    RESTARTS   AGE
+alertmanager-main-0                                      6/6     Running   18         3d6h
+alertmanager-main-1                                      6/6     Running   18         3d6h
+cluster-monitoring-operator-6b94d5d5-vrtrx               1/1     Running   3          3d6h
+kube-state-metrics-c9f6d488-s5hwt                        3/3     Running   9          3d6h
+metrics-server-66d6bc7cfc-b9hrw                          1/1     Running   2          2d7h
+metrics-server-66d6bc7cfc-jsrq2                          1/1     Running   2          2d7h
+monitoring-plugin-8567bcb698-lbbxh                       1/1     Running   3          3d6h
+monitoring-plugin-8567bcb698-sr9b6                       1/1     Running   3          3d6h
+node-exporter-2xpcs                                      2/2     Running   6          3d6h
+
+```
+
+### doing hpa with deployment 
+
+```
+ oc autoscale deployment ashud5 --cpu-percent=70  --max=20 --min=2 --dry-run=client -o yaml >hpa.yaml 
+[ec2-user@openshift final-day-yamls]$ ls
+deploy1.yaml  hpa.yaml  registry_cred.yaml
+[ec2-user@openshift final-day-yamls]$ oc get po
+NAME                      READY   STATUS    RESTARTS   AGE
+ashud5-854495c456-4psvc   1/1     Running   0          36m
+[ec2-user@openshift final-day-yamls]$ oc create -f hpa.yaml 
+horizontalpodautoscaler.autoscaling/ashud5 created
+[ec2-user@openshift final-day-yamls]$ 
+[ec2-user@openshift final-day-yamls]$ 
+[ec2-user@openshift final-day-yamls]$ oc get hpa
+NAME     REFERENCE           TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+ashud5   Deployment/ashud5   <unknown>/70%   2         20        0          3s
+[ec2-user@openshift final-day-yamls]$ oc get  po
+NAME                      READY   STATUS    RESTARTS   AGE
+ashud5-854495c456-4psvc   1/1     Running   0          36m
+
+```
