@@ -46,3 +46,39 @@ CONTAINER ID  IMAGE                            COMMAND      CREATED        STATU
 
 <img src="helm1.png">
 
+### using events 
+
+```
+ oc get events 
+LAST SEEN   TYPE     REASON                   OBJECT                           MESSAGE
+2m37s       Normal   Scheduled                pod/ashu-db-7bf96f445-jghs4      Successfully assigned ashu-project/ashu-db-7bf96f445-jghs4 to ip-10-0-55-78.ec2.internal
+2m34s       Normal   SuccessfulAttachVolume   pod/ashu-db-7bf96f445-jghs4      AttachVolume.Attach succeeded for volume "pvc-aa9e7a81-c3c8-4d8d-aa9a-cfcf9153bc19"
+2m29s       Normal   AddedInterface           pod/ashu-db-7bf96f445-jghs4      Add eth0 [10.131.0.19/23] from ovn-kubernetes
+2m29s       Normal   Pulled                   pod/ashu-db-7bf96f445-jghs4      Container image "vodaserver.azurecr.io/mysql:v1" already present on machine
+2m28s       Normal   Created                  pod/ashu-db-7bf96f445-jghs4      Created container mysql
+2m28s       Normal   Started                  pod/ashu-db-7bf96f445-jghs4      Started container mysql
+
+```
+
+### CRD in k8s / ocp 
+
+<img src="crd1.png">
+
+### checking cluster health with /healthz url 
+
+#### Note ocp cluster operator are the reason 
+
+```
+[ec2-user@openshift ~]$ oc get --raw  /healthz 
+ok[ec2-user@openshift ~]$ 
+[ec2-user@openshift ~]$ 
+[ec2-user@openshift ~]$ oc get  co 
+NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
+authentication                             4.16.0    True        False         False      2d1h    
+baremetal                                  4.16.0    True        False         False      3d3h    
+cloud-controller-manager                   4.16.0    True        False         False      3d3h    
+cloud-credential                           4.16.0    True        False         False      3d3h    
+cluster-autoscaler                         4.16.0    True        False         False      3d3h    
+
+```
+
