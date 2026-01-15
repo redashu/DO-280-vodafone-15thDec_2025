@@ -94,3 +94,60 @@ cluster-autoscaler                         4.16.0    True        False         F
   683  oc get po -n openshift-kube-apiserver
 ```
 
+### understanding user and permission in OCP 
+
+<img src="perms1.png">
+
+### checking roles and clusterroles 
+
+```
+687  oc get roles 
+  688* oc project 
+  689  oc get roles -A
+  690  oc get clusterroles 
+```
+
+### testing with user dev
+
+```
+oc whoami --show-server
+https://api.mayank.openshiftlab.xyz:6443
+[ec2-user@openshift ~]$ oc whoami --show-console
+https://console-openshift-console.apps.mayank.openshiftlab.xyz
+[ec2-user@openshift ~]$ sudo -i
+[root@openshift ~]# 
+[root@openshift ~]# 
+[root@openshift ~]# oc login https://api.mayank.openshiftlab.xyz:6443  -u dev1 
+WARNING: Using insecure TLS client config. Setting this option is not supported!
+
+Console URL: https://api.mayank.openshiftlab.xyz:6443/console
+Authentication required for https://api.mayank.openshiftlab.xyz:6443 (openshift)
+Username: dev1
+Password: 
+Login successful.
+
+You don't have any projects. You can try to create a new project, by running
+
+    oc new-project <projectname>
+
+[root@openshift ~]# oc project
+No project has been set. Pass a project name to make that the default.
+[root@openshift ~]# 
+[root@openshift ~]# oc get nodes
+Error from server (Forbidden): nodes is forbidden: User "dev1" cannot list resource "nodes" in API group "" at the cluster scope
+[root@openshift ~]# 
+[root@openshift ~]# 
+[root@openshift ~]# oc version 
+Client Version: 4.16.0
+Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+Kubernetes Version: v1.29.5+29c95f3
+[root@openshift ~]# oc get nodes
+Error from server (Forbidden): nodes is forbidden: User "dev1" cannot list resource "nodes" in API group "" at the cluster scope
+[root@openshift ~]# oc get pod
+Error from server (Forbidden): pods is forbidden: User "dev1" cannot list resource "pods" in API group "" in the namespace "default"
+[root@openshift ~]# oc project default 
+error: You are not a member of project "default".
+You have one project on this server: dev
+[root@openshift ~]# 
+
+```
