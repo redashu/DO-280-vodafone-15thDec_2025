@@ -249,3 +249,25 @@ NAME                      READY   STATUS    RESTARTS   AGE
 ashud5-854495c456-4psvc   1/1     Running   0          36m
 
 ```
+
+### jobs in ocp 
+
+```
+oc create -f job1.yaml 
+job.batch/ashu-job created
+[ec2-user@openshift final-day-yamls]$ oc get job
+NAME       COMPLETIONS   DURATION   AGE
+ashu-job   0/1           4s         4s
+[ec2-user@openshift final-day-yamls]$ oc get job
+NAME       COMPLETIONS   DURATION   AGE
+ashu-job   1/1           9s         9s
+[ec2-user@openshift final-day-yamls]$ oc get pod
+NAME             READY   STATUS      RESTARTS   AGE
+ashu-job-fqvgm   0/1     Completed   0          13s
+[ec2-user@openshift final-day-yamls]$ oc logs ashu-job-fqvgm 
+Hello OpenShift
+[ec2-user@openshift final-day-yamls]$ oc logs job/ashu-job
+Hello OpenShift
+
+```
+
