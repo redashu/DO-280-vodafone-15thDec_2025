@@ -82,3 +82,15 @@ cluster-autoscaler                         4.16.0    True        False         F
 
 ```
 
+### few more commands 
+
+```
+677  oc get --raw  / 
+  678  oc get --raw  /healthz 
+  679  oc get  co 
+  680  oc get  co  etcd  
+  681  oc describe   co  etcd  
+  682  oc projects  | grep -i apiserver
+  683  oc get po -n openshift-kube-apiserver
+```
+
